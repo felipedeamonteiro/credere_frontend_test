@@ -3,9 +3,9 @@ import React, { useCallback, useRef } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-// import { useHistory } from 'react-router-dom';
-// import getValidationErrors from '../../utils/getValidationErrors';
-// import { useAuth } from '../../hooks/auth';
+import { useHistory } from 'react-router-dom';
+import getValidationErrors from '../../utils/getValidationErrors';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, AnimationContainer, Content, Instructions } from './styles';
 import LogoColorido from '../../assets/credere.png';
@@ -20,32 +20,35 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  // const { signIn } = useAuth();
-  // const history = useHistory();
+  const { signIn } = useAuth();
+  const history = useHistory();
 
-  const handleSubmit = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        signin: Yup.string().required(
-          'É necessário um nome! Examplo: John Doe',
-        ),
-      });
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        const schema = Yup.object().shape({
+          signin: Yup.string().required(
+            'É necessário um nome! Examplo: John Doe',
+          ),
+        });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // signIn({
-      //   rawName: data.signin,
-      // });
+        signIn({
+          rawName: data.signin,
+        });
 
-      // history.push('/dashboard');
-    } catch (error) {
-      // const errors = getValidationErrors(error);
-      // formRef.current?.setErrors(errors);
-    }
-  }, []);
+        history.push('/painel_de_controle');
+      } catch (error) {
+        const errors = getValidationErrors(error);
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [history, signIn],
+  );
 
   return (
     <Container>
