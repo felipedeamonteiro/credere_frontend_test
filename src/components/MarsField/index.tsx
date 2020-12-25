@@ -32,15 +32,15 @@ const MarsField: React.FC = () => {
         <div className="car-coordinates">
           <div>
             <p>Coordenada X:</p>
-            <p>2</p>
+            <p>0</p>
           </div>
           <div>
             <p>Coordenada Y:</p>
-            <p>2</p>
+            <p>0</p>
           </div>
           <div>
             <p>Direção da Sonda:</p>
-            <p>Cima</p>
+            <p>Direita</p>
           </div>
         </div>
         <Button onClick={ResetCoordinates}>Resetar Coordenadas</Button>
@@ -85,8 +85,8 @@ const MarsField: React.FC = () => {
             </tr>
             <tr>
               <td>
-                <GiMarsPathfinder size={50} />
-                <FiArrowRight size={50} />
+                <GiMarsPathfinder size={50} color="#116bd9" />
+                <FiArrowRight size={50} color="#00c897" />
               </td>
               <td />
               <td />

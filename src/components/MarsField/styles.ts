@@ -6,8 +6,25 @@ export const Container = styled.div`
   justify-content: space-between;
 
   .panel-controller {
+    padding: 20px;
     background: lightblue;
     margin-right: 25px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0px 50px 10px #00c897;
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    div {
+      p + p {
+        color: #00c897;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    }
 
     input {
       width: 350px;
