@@ -4,7 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.header`
   top: 0;
   height: 60px;
-  background: linear-gradient(to right, #de0039, #a6006a);
+  background: linear-gradient(45deg, #00c897 35%, #45536c);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,15 +15,10 @@ export const Container = styled.header`
     align-items: center;
     padding-left: 60px;
 
-    img {
-      width: 50px;
-      height: 50px;
-      color: #fff;
-    }
-
     h2 {
       color: #fff;
       padding-left: 15px;
+      font-weight: bold;
     }
   }
 
@@ -44,26 +39,32 @@ export const Container = styled.header`
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.4, '#70008c')};
+        color: ${shade(0, '#00c897')};
       }
+    }
+
+    h3 {
+      color: #fff;
+      padding-right: 10px;
     }
 
     h4 {
       color: #fff;
       padding-right: 10px;
+      font-weight: bold;
     }
 
     .user-initials {
       clear: left;
-      border: 1px solid #de0039;
+      border: 1px solid #00c897;
       background: #fff;
-      color: #000;
+      color: #45536c;
       width: 40px;
       height: 40px;
       line-height: 40px;
       vertical-align: middle;
       text-align: center;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 50%;
     }
   }

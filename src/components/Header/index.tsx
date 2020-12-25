@@ -5,7 +5,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import { Container } from './styles';
 
 const Header: React.FC = () => {
-  const [initials, setInitials] = useState<string>('');
+  const [initials, setInitials] = useState<string>('JD');
   // const { signOut, user } = useAuth();
 
   // useEffect(() => {
@@ -16,23 +16,25 @@ const Header: React.FC = () => {
   //   }
   // }, [user]);
 
-  // const handleSignOut = useCallback(() => {
-  //   signOut();
-  // }, [signOut]);
+  const handleSignOut = useCallback(() => {
+    console.log('Saiu da aplicação');
+    // signOut();
+  }, []);
 
   return (
     <Container>
       <div className="left-div">
-        {/* <img src={logoImg} alt="logo-venturus" /> */}
-        <h2>Squad Management Tool</h2>
+        <h2>Mars Probe Management Dashboard</h2>
       </div>
       <div className="right-div">
+        <h3>PILOT:</h3>
+        <h4>JOHN DOE</h4>
         {/* <h4>{user?.name}</h4> */}
         <div className="user-initials">{initials}</div>
-        {/* <button type="button" onClick={handleSignOut} className="logout"> */}
-        <FaSignOutAlt size={20} />
-        <p>Logout</p>
-        {/* </button> */}
+        <button type="button" onClick={handleSignOut} className="logout">
+          <FaSignOutAlt size={20} />
+          <p>Logout</p>
+        </button>
       </div>
     </Container>
   );
