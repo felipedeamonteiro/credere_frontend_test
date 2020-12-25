@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
 
       const schema = Yup.object().shape({
         signin: Yup.string().required(
-          'Name required! Example: Felipe Monteiro',
+          'É necessário um nome! Examplo: John Doe',
         ),
       });
       await schema.validate(data, {
@@ -52,7 +52,7 @@ const SignIn: React.FC = () => {
       <Content>
         <AnimationContainer>
           <img src={LogoColorido} alt="Logo Credere" />
-          <h3>Credere BackEnd Developer Test</h3>
+          <h3>Credere - Teste para Desenvolvedor Backend</h3>
           <Form ref={formRef} onSubmit={handleSubmit} id="signin-form">
             <Input placeholder="Type a name to sign in" name="signin" />
             <Button type="submit">Sign In</Button>
@@ -62,25 +62,20 @@ const SignIn: React.FC = () => {
 
       <Instructions>
         <div>
-          <h1>Mars Probe Manager</h1>
-          <h2>About the application</h2>
+          <h1>Painel de Controle de Sonda Marciana</h1>
+          <h2>Sobre a aplicação</h2>
           <p>
-            This is a <b>Mars Probe Manager</b>. <br />
-            Here you will be able to <b>move</b> a mars probe from NASA over a
-            test field.
+            Este é um <b>Painel de Controle de uma Sonda Marciana</b>. <br />
+            Aqui você será capaz de <b>mover</b> uma sonda marciana da NASA em
+            um campo de prova.
           </p>
           <p>
-            Enter the comands{' '}
-            <strong>
-              GE (Girar Esquerda or Rotate Left), GD (Girar Direita or Rotate
-              Right) and M (Mover or Move)
-            </strong>{' '}
-            to make the probe move along. The information about where you are
-            will be shown.
+            Use os comandos{' '}
+            <strong>GE (Girar Esquerda), GD (Girar Direita) e M (Mover)</strong>{' '}
+            para fazer a sonda se mover. A informação de suas coordenadas serão
+            mostradas no painel.
           </p>
-          {/* <h2>Watch out!</h2>
-          <p>Always you logout the application, all information is lost.</p> */}
-          <h3>Enjoy!</h3>
+          <h3>Divirta-se!</h3>
         </div>
       </Instructions>
     </Container>

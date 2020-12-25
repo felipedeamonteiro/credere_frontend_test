@@ -24,10 +24,10 @@ const Header: React.FC = () => {
   return (
     <Container>
       <div className="left-div">
-        <h2>Mars Probe Management Dashboard</h2>
+        <h2>Painel de Controle da Sonda Marciana</h2>
       </div>
       <div className="right-div">
-        <h3>PILOT:</h3>
+        <h3>PILOTO(A):</h3>
         <h4>JOHN DOE</h4>
         {/* <h4>{user?.name}</h4> */}
         <div className="user-initials">{initials}</div>
