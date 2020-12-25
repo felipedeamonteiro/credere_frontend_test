@@ -8,10 +8,10 @@ export const Container = styled.button`
   border: none;
   font-weight: 500;
   border-radius: 5px;
-  color: #fff;
-  background: linear-gradient(to bottom, #de0039, #70008c);
+  color: #242e40;
+  background: linear-gradient(45deg, #00c897 55%, #45536c);
 
   &:hover {
-    background: ${shade(0.2, '#de0039')};
+    background: ${shade(0.2, '#00c897')};
   }
 `;

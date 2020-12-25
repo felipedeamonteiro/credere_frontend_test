@@ -52,12 +52,9 @@ const SignIn: React.FC = () => {
       <Content>
         <AnimationContainer>
           <img src={LogoColorido} alt="Logo Credere" />
-          <h3>Venturus FrontEnd Developer Test</h3>
+          <h3>Credere BackEnd Developer Test</h3>
           <Form ref={formRef} onSubmit={handleSubmit} id="signin-form">
-            <Input
-              placeholder="Type your first and last names to sign in"
-              name="signin"
-            />
+            <Input placeholder="Type a name to sign in" name="signin" />
             <Button type="submit">Sign In</Button>
           </Form>
         </AnimationContainer>
@@ -65,24 +62,24 @@ const SignIn: React.FC = () => {
 
       <Instructions>
         <div>
-          <h1>Soccer Squad Manager</h1>
+          <h1>Mars Probe Manager</h1>
           <h2>About the application</h2>
           <p>
-            This is a <b>Soccer squad manager</b> (looks like <b>Cartola FC</b>{' '}
-            from Brazil). <br />
-            Here you will be able to <b>create</b>, <b>delete</b> and{' '}
-            <b>edit</b> teams, adding some description, tags and 10 different
-            field formations!
-            <br />
-            You can choose any player in the world just by informing its
-            original team and country.
+            This is a <b>Mars Probe Manager</b>. <br />
+            Here you will be able to <b>move</b> a mars probe from NASA over a
+            test field.
           </p>
           <p>
-            These information are real and acquired from the demo API
-            https://www.api-football.com/.
+            Enter the comands{' '}
+            <strong>
+              GE (Girar Esquerda or Rotate Left), GD (Girar Direita or Rotate
+              Right) and M (Mover or Move)
+            </strong>{' '}
+            to make the probe move along. The information about where you are
+            will be shown.
           </p>
-          <h2>Watch out!</h2>
-          <p>Always you logout the application, all information is lost.</p>
+          {/* <h2>Watch out!</h2>
+          <p>Always you logout the application, all information is lost.</p> */}
           <h3>Enjoy!</h3>
         </div>
       </Instructions>

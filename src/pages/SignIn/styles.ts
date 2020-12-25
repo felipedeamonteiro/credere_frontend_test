@@ -61,8 +61,8 @@ export const Instructions = styled.div`
   align-items: center;
   justify-content: center;
   line-height: 45px;
-  background: linear-gradient(to bottom, #de0039, #70008c);
-  color: #fff;
+  background: linear-gradient(45deg, #00c897 35%, #45536c);
+  color: #242e40;
   place-content: center;
   width: 100%;
   height: 100%;
