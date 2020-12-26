@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
         const schema = Yup.object().shape({
           signin: Yup.string()
             .matches(
-              /[A-Z][a-z].*\s+[A-Z][a-z].*/,
+              /[A-Z][a-z].*\s[A-Z][a-z].*/,
               'É necessário um nome e sobrenome.',
             )
             .required('É necessário um nome e sobrenome. Exemplo: John Doe'),
