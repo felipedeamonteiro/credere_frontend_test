@@ -29,10 +29,14 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          signin: Yup.string().required(
-            'É necessário um nome! Examplo: John Doe',
-          ),
+          signin: Yup.string()
+            .matches(
+              /[A-Z][a-z].*\s+[A-Z][a-z].*/,
+              'É necessário um nome e sobrenome.',
+            )
+            .required('É necessário um nome e sobrenome. Exemplo: John Doe'),
         });
+
         await schema.validate(data, {
           abortEarly: false,
         });
