@@ -37,7 +37,10 @@ const MarsField: React.FC = () => {
   const [probeData, setProbeData] = useState<IMarsProbeCoordinatesData>(
     {} as IMarsProbeCoordinatesData,
   );
-  const [loading, setLoading] = useState<boolean>(false);
+  const [inputMovement, setInputMovement] = useState<string>('');
+  const [arrowDirectionIcon, setArrowDirectionIcon] = useState<JSX.Element>(
+    <FiArrowRight size={50} color="#00c897" />,
+  );
 
   useEffect(() => {
     const giveProbeData = async () => {
@@ -61,13 +64,26 @@ const MarsField: React.FC = () => {
         });
       }
     };
-    setLoading(true);
+
     giveProbeData();
-    setLoading(false);
   }, [userName]);
 
+  useEffect(() => {
+    if (probeData.carDirection === 'Direita') {
+      setArrowDirectionIcon(<FiArrowRight size={50} color="#00c897" />);
+    }
+    if (probeData.carDirection === 'Cima') {
+      setArrowDirectionIcon(<FiArrowUp size={50} color="#00c897" />);
+    }
+    if (probeData.carDirection === 'Esquerda') {
+      setArrowDirectionIcon(<FiArrowLeft size={50} color="#00c897" />);
+    }
+    if (probeData.carDirection === 'Baixo') {
+      setArrowDirectionIcon(<FiArrowDown size={50} color="#00c897" />);
+    }
+  }, [probeData.carDirection]);
+
   const ResetCoordinates = useCallback(async () => {
-    setLoading(true);
     if (userName) {
       await api.post(`/coordinates/reset/${userName}`);
       setProbeData({
@@ -77,14 +93,14 @@ const MarsField: React.FC = () => {
         carDirection: 'Direita',
       });
     }
-    setLoading(false);
-  }, [userName]);
+    console.log('arrowDirectionIcon', arrowDirectionIcon);
+    setInputMovement('');
+  }, [arrowDirectionIcon, userName]);
 
   const MoveProbe = useCallback(
     async (data: IFormRawData) => {
       try {
         formRef.current?.setErrors({});
-        setLoading(true);
 
         const schema = Yup.object().shape({
           movement: Yup.string()
@@ -110,9 +126,7 @@ const MarsField: React.FC = () => {
             yCoordinate: marsProbeData.data.yCoordinate,
             carDirection: marsProbeData.data.carDirection,
           });
-          setLoading(false);
         }
-        setLoading(false);
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -152,6 +166,8 @@ const MarsField: React.FC = () => {
           <Input
             placeholder="Digite apenas os comandos GD, GE ou M"
             name="movement"
+            value={inputMovement}
+            onChange={e => setInputMovement(e.target.value)}
           />
           <Button type="submit">Mover Sonda</Button>
         </Form>
@@ -159,44 +175,286 @@ const MarsField: React.FC = () => {
       <div className="field-table">
         <table>
           <tbody>
-            <tr>
-              <td />
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
-            <tr>
-              <td />
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
-            <tr>
-              <td />
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
-            <tr>
-              <td />
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
-            <tr>
-              <td>
-                <GiMarsPathfinder size={50} color="#116bd9" />
-                <FiArrowRight size={50} color="#00c897" />
-              </td>
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
+            {probeData.yCoordinate === 4 ? (
+              <tr>
+                {probeData.xCoordinate === 0 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 1 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 2 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 3 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 4 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+              </tr>
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+            )}
+            {probeData.yCoordinate === 3 ? (
+              <tr>
+                {probeData.xCoordinate === 0 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 1 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 2 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 3 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 4 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+              </tr>
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+            )}
+            {probeData.yCoordinate === 2 ? (
+              <tr>
+                {probeData.xCoordinate === 0 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 1 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 2 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 3 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 4 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+              </tr>
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+            )}
+            {probeData.yCoordinate === 1 ? (
+              <tr>
+                {probeData.xCoordinate === 0 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 1 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 2 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 3 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 4 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+              </tr>
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+            )}
+            {probeData.yCoordinate === 0 ? (
+              <tr>
+                {probeData.xCoordinate === 0 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 1 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 2 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 3 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+
+                {probeData.xCoordinate === 4 ? (
+                  <td>
+                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    {arrowDirectionIcon}
+                  </td>
+                ) : (
+                  <td />
+                )}
+              </tr>
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

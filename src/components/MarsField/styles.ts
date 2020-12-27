@@ -29,7 +29,7 @@ export const Container = styled.div`
 
     input {
       width: 350px;
-      margin-top: 15px;
+      margin-top: 10px;
       margin-bottom: 15px;
     }
 
