@@ -1,47 +1,42 @@
-# Getting Started with Create React App
+# Hiring Test - Credere
+This is a frontend aplication to the backend developer job in the company Credere.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## - Specifications and technologies used here
 
-## Available Scripts
+This project was built using `ReactJs` with `Typescript`.
 
-In the project directory, you can run:
+Here, `node` version is `12.16.3` and the package manager used is `yarn` in version `1.22.5`.
 
-### `yarn start`
+The database used is `Postgres` with `Typeorm` as ORM (object-relational mapping). Besides that, the database is running in a `docker` image of postgres.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It's not used tests because the main point of this test is the backend application of this project. The backend repository can be found [here](https://github.com/felipedeamonteiro/credere_backend_test).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## - How to run the project
 
-### `yarn test`
+### Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After downloading the code from the repository (and letting the docker running), run `yarn` to install all the dependencies.
 
-### `yarn build`
+After that:
+```
+yarn start
+```
+The application will be running on port 3000:
+```
+http://localhost:3000
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project is about moving a Mars Probe in a console. It moves always to its front, but the direction may change from `Right` to `Up`, `Down` and `Left`. It runs only in small area like this:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| (0,4) |  (1,4) | (2,4) |  (3,4) | (4,4) |
+|:-----:|  ----  |  ---- |  ----  |  ---- |
+| (0,3) |  (1,3) | (2,3) |  (3,3) | (4,3) |
+| (0,2) |  (1,2) | (2,2) |  (3,2) | (4,2) |
+| (0,1) |  (1,1) | (2,1) |  (3,1) | (4,1) |
+| (0,0) |  (1,0) | (2,0) |  (3,0) | (4,0) |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+These are the real coordinates and they are part of the probe localization. It accepts the written commands `GE (Rotate Left), GD (Rotate Right) and M (Move Front)`.
 
-### `yarn eject`
+More instructions may be seen inside the application (everything is in portuguese).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# credere_frontend_test
+## Enjoy!
