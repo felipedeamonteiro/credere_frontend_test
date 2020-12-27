@@ -13,6 +13,7 @@ export const Container = styled.div`
     .instructions {
       display: flex;
       flex-direction: row;
+      margin-bottom: 20px;
 
       .inst-1 {
         strong {
