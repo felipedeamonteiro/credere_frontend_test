@@ -93,9 +93,9 @@ const MarsField: React.FC = () => {
         carDirection: 'Direita',
       });
     }
-    console.log('arrowDirectionIcon', arrowDirectionIcon);
+    formRef.current?.setErrors({});
     setInputMovement('');
-  }, [arrowDirectionIcon, userName]);
+  }, [userName]);
 
   const MoveProbe = useCallback(
     async (data: IFormRawData) => {
