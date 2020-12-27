@@ -11,7 +11,7 @@ interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
   component: React.ComponentType;
 }
-
+// Here it is made an auth validation to let or not the user go to validated routes
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component: Component,

@@ -17,9 +17,13 @@ interface SignInFormData {
   signin: string;
 }
 
+// SignIn page containing its methods
+
 const SignIn: React.FC = () => {
+  // formRef from unform to handle the input and button components
   const formRef = useRef<FormHandles>(null);
 
+  // Usage of signin method and useHistory hook to handle diferent routes
   const { signIn } = useAuth();
   const history = useHistory();
 
@@ -28,6 +32,7 @@ const SignIn: React.FC = () => {
       try {
         formRef.current?.setErrors({});
 
+        // Yup lib to handle input validation with regex
         const schema = Yup.object().shape({
           signin: Yup.string()
             .matches(
@@ -47,6 +52,8 @@ const SignIn: React.FC = () => {
 
         history.push('/painel_de_controle');
       } catch (error) {
+        // getValidationErrors is an Error function to help all inputs validation errors
+        // inside the application.
         const errors = getValidationErrors(error);
         formRef.current?.setErrors(errors);
       }

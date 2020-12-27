@@ -3,7 +3,7 @@ import { ValidationError } from 'yup';
 interface Errors {
   [key: string]: string;
 }
-
+// Validation Errorfunction to help handle errors in the application
 export default function getValidationErrors(err: ValidationError): Errors {
   const validationErrors: Errors = {};
 

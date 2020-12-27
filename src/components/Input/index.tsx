@@ -3,6 +3,12 @@ import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
+/**
+ * A standard Input component to be used many times in the application.
+ * It has its style, but its possible to get it and change the original style,
+ * if needed.
+ */
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
@@ -20,10 +26,13 @@ const Input: React.FC<InputProps> = ({
   updateDefaultValue,
   ...rest
 }) => {
+  // State constants to control the state of the value of the input
+  // useRef from React and useField from unform used to control forms data
   const [defaultValueState, setDefaultValueState] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
+  // unform configuration of input data
   useEffect(() => {
     registerField({
       name: fieldName,

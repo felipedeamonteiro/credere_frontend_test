@@ -28,7 +28,8 @@ interface IMarsProbeCoordinatesData {
   carDirection: 'Direita' | 'Cima' | 'Esquerda' | 'Baixo';
 }
 
-const MarsField: React.FC = () => {
+const ControlPanel: React.FC = () => {
+  // States constants to help in this component
   const formRef = useRef<FormHandles>(null);
   const userName = localStorage.getItem('@CredereTest:name')
     ? localStorage.getItem('@CredereTest:name')
@@ -42,6 +43,7 @@ const MarsField: React.FC = () => {
     <FiArrowRight size={50} color="#00c897" />,
   );
 
+  // Shows in the panel the probe coordinates
   useEffect(() => {
     const giveProbeData = async () => {
       const pilotData = await api.get(`/coordinates/${userName}`);
@@ -68,6 +70,7 @@ const MarsField: React.FC = () => {
     giveProbeData();
   }, [userName]);
 
+  // Make sure about the arrow position of the probe direction
   useEffect(() => {
     if (probeData.carDirection === 'Direita') {
       setArrowDirectionIcon(<FiArrowRight size={50} color="#00c897" />);
@@ -83,6 +86,7 @@ const MarsField: React.FC = () => {
     }
   }, [probeData.carDirection]);
 
+  // Reset probe coordinates calling its endpoint and updating the coordinates state
   const ResetCoordinates = useCallback(async () => {
     if (userName) {
       await api.post(`/coordinates/reset/${userName}`);
@@ -97,6 +101,9 @@ const MarsField: React.FC = () => {
     setInputMovement('');
   }, [userName]);
 
+  // This function maked validation of what is written in input to make the probe move,
+  // makes the api call to the create and calculate movement endpoint, and returns
+  // the api call response.
   const MoveProbe = useCallback(
     async (data: IFormRawData) => {
       try {
@@ -462,4 +469,4 @@ const MarsField: React.FC = () => {
   );
 };
 
-export default MarsField;
+export default ControlPanel;

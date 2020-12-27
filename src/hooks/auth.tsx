@@ -4,7 +4,9 @@ import React, { createContext, useCallback, useState, useContext } from 'react';
  * Here we have a hook containing the global state of auth from a user. The methods
  * SignIn and SignOut are here.
  *
- * In the global state constant 'data' is stored the data from the user.
+ * In the global state constant 'data' is stored the data from the user. And it is
+ * used with Context API from React. It was chosen because this is a small application.
+ * If not, Redux would be chosen.
  */
 
 interface SignInCredentials {
@@ -26,6 +28,7 @@ interface User {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
+  // Initial State of data verifying if there' anything in localStorage
   const [data, setData] = useState(() => {
     const name = localStorage.getItem('@CredereTest:name');
     const firstName = localStorage.getItem('@CredereTest:firstName');
@@ -50,6 +53,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setData({ name, firstName, lastName });
   }, []);
 
+  // Signout function cleaning localStorage and setting data state as null
   const signOut = useCallback(() => {
     localStorage.removeItem('@CredereTest:name');
     localStorage.removeItem('@CredereTest:firstName');
@@ -65,6 +69,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
+// Usage of Context Api to let the data available to the whole application
 export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 

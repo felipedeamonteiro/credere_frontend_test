@@ -3,7 +3,7 @@ import { Container } from './styles';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import MarsField from '../../components/MarsField';
+import ControlPanel from '../../components/ControlPanel';
 
 const Dashboard: React.FC = () => {
   return (
@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
-          <MarsField />
+          <ControlPanel />
         </div>
       </Container>
       <Footer />
