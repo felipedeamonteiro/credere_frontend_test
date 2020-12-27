@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   .panel-controller {
     padding: 20px;
+    max-width: 350px;
     background: lightblue;
     margin-right: 25px;
     border-radius: 10px;
@@ -28,7 +29,7 @@ export const Container = styled.div`
 
     input {
       width: 350px;
-      margin-top: 50px;
+      margin-top: 15px;
       margin-bottom: 15px;
     }
 
