@@ -7,7 +7,7 @@ export const Container = styled.div`
   height: 1050px;
 
   @media only screen and (max-width: 375px) {
-    height: 1850px;
+    height: 1950px;
   }
 
   @media only screen and (min-width: 380px) and (max-width: 770px) {

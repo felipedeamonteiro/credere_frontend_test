@@ -165,17 +165,83 @@ const ControlPanel: React.FC = () => {
     [userName],
   );
 
-  const moveForward = useCallback(() => {
-    console.log('Frente');
-  }, []);
+  const moveForward = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
 
-  const rotateLeft = useCallback(() => {
-    console.log('Girar Esquerda');
-  }, []);
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'M',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
 
-  const rotateRight = useCallback(() => {
-    console.log('Girar Direita');
-  }, []);
+  const rotateLeft = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
+
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'GE',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
+
+  const rotateRight = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
+
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'GD',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
 
   return (
     <Container>

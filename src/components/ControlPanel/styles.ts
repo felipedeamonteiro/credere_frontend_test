@@ -116,7 +116,7 @@ export const Container = styled.div`
     .panel-controller {
       margin-left: 35px;
       width: 320px;
-      height: 470px;
+      height: 510px;
 
       input {
         width: 310px;
