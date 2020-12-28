@@ -85,14 +85,14 @@ export const AnimationContainer = styled.div`
   @media only screen and (max-width: 375px) {
     button,
     input {
-      width: 310px;
+      width: 310px !important;
     }
   }
 
   @media only screen and (min-width: 380px) and (max-width: 415px) {
     button,
     input {
-      width: 350px;
+      width: 350px !important;
     }
   }
 `;
