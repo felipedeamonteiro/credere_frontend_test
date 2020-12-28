@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   .panel-controller {
     padding: 20px;
@@ -36,6 +37,26 @@ export const Container = styled.div`
     button {
       width: 200px;
     }
+
+    .fast-moves {
+      .div-line {
+        border-bottom: 1px solid lightgray;
+      }
+
+      h3 {
+        margin: 8px 0;
+      }
+
+      .fast-moves-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        button + button {
+          margin-left: 10px;
+        }
+      }
+    }
   }
 
   .field-table {
@@ -52,6 +73,12 @@ export const Container = styled.div`
         td {
           width: 120px;
           border: 1px solid #45536c;
+
+          div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+          }
         }
       }
     }
@@ -75,7 +102,11 @@ export const Container = styled.div`
           max-height: 21px;
 
           td {
-            max-width: 9px;
+            max-width: 79px;
+            div {
+              margin-right: -80px !important;
+              width: 65px !important;
+            }
           }
         }
       }
@@ -85,7 +116,7 @@ export const Container = styled.div`
     .panel-controller {
       margin-left: 35px;
       width: 320px;
-      height: 380px;
+      height: 510px;
 
       input {
         width: 310px;
@@ -100,7 +131,11 @@ export const Container = styled.div`
           max-height: 31px;
 
           td {
-            max-width: 9px;
+            max-width: 69px;
+            div {
+              margin-right: -80px !important;
+              width: 65px !important;
+            }
           }
         }
       }

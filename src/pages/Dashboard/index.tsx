@@ -16,7 +16,10 @@ const Dashboard: React.FC = () => {
               <h1>
                 <b>Instruções para movimentar a sonda</b>
               </h1>
-              <p>Piloto(a), você precisa digitar os comandos!</p>
+              <p>
+                Piloto(a), você pode digitar os comandos ou apertar os botões
+                para um movimento por clique!
+              </p>
 
               <br />
               <p>Os Comandos são:</p>

@@ -38,6 +38,7 @@ const ControlPanel: React.FC = () => {
   const [probeData, setProbeData] = useState<IMarsProbeCoordinatesData>(
     {} as IMarsProbeCoordinatesData,
   );
+  const [errorSet, setErrorSet] = useState<boolean>(false);
   const [iconSize, setIconSize] = useState<number>(50);
   const [inputMovement, setInputMovement] = useState<string>('');
   const [arrowDirectionIcon, setArrowDirectionIcon] = useState<JSX.Element>(
@@ -48,7 +49,7 @@ const ControlPanel: React.FC = () => {
     if (window.innerWidth <= 375) {
       setIconSize(25);
     } else if (window.innerWidth <= 415) {
-      setIconSize(30);
+      setIconSize(35);
     } else {
       setIconSize(50);
     }
@@ -80,7 +81,7 @@ const ControlPanel: React.FC = () => {
     };
 
     giveProbeData();
-  }, [userName]);
+  }, [userName, errorSet]);
 
   // Make sure about the arrow position of the probe direction
   useEffect(() => {
@@ -147,6 +148,7 @@ const ControlPanel: React.FC = () => {
           });
         }
       } catch (error) {
+        setErrorSet(true);
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
 
@@ -157,10 +159,89 @@ const ControlPanel: React.FC = () => {
               'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
           });
         }
+        setErrorSet(false);
       }
     },
     [userName],
   );
+
+  const moveForward = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
+
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'M',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
+
+  const rotateLeft = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
+
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'GE',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
+
+  const rotateRight = useCallback(async () => {
+    try {
+      formRef.current?.setErrors({});
+
+      if (userName) {
+        const marsProbeData = await api.post(`/movements`, {
+          name: userName,
+          movement: 'GD',
+        });
+        setProbeData({
+          pilot_name: userName,
+          xCoordinate: marsProbeData.data.xCoordinate,
+          yCoordinate: marsProbeData.data.yCoordinate,
+          carDirection: marsProbeData.data.carDirection,
+        });
+      }
+    } catch (error) {
+      setErrorSet(true);
+      formRef.current?.setErrors({
+        movement:
+          'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
+      });
+      setErrorSet(false);
+    }
+  }, [userName]);
 
   return (
     <Container>
@@ -183,13 +264,32 @@ const ControlPanel: React.FC = () => {
         <Button onClick={ResetCoordinates}>Resetar Coordenadas</Button>
         <Form ref={formRef} onSubmit={MoveProbe} id="move-probe">
           <Input
-            placeholder="Digite os comandos GD, GE ou M"
+            placeholder="Digite os comandos GE, M ou GD"
             name="movement"
             value={inputMovement}
             onChange={e => setInputMovement(e.target.value)}
           />
           <Button type="submit">Mover Sonda</Button>
         </Form>
+        <div className="fast-moves">
+          <div className="div-line" />
+          <h3>Movimentos rápidos</h3>
+          <div className="fast-moves-buttons">
+            <Button type="button" title="Girar à Esquerda" onClick={rotateLeft}>
+              GE
+            </Button>
+            <Button
+              type="button"
+              title="Mover para frente"
+              onClick={moveForward}
+            >
+              M
+            </Button>
+            <Button type="button" title="Girar à Direita" onClick={rotateRight}>
+              GD
+            </Button>
+          </div>
+        </div>
       </div>
       <div className="field-table">
         <table>
@@ -263,8 +363,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -272,8 +374,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -281,8 +385,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -290,8 +396,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -310,8 +418,10 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -319,8 +429,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -328,8 +440,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -337,8 +451,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -346,8 +462,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -366,8 +484,10 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -375,8 +495,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -384,8 +506,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -393,8 +517,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -402,8 +528,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -422,8 +550,10 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -431,8 +561,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -440,8 +572,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -449,8 +583,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
@@ -458,8 +594,10 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
-                    {arrowDirectionIcon}
+                    <div>
+                      <GiMarsPathfinder size={iconSize} color="#116bd9" />
+                      {arrowDirectionIcon}
+                    </div>
                   </td>
                 ) : (
                   <td />
