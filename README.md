@@ -1,5 +1,8 @@
 # Hiring Test - Credere
 This is a frontend aplication to the backend developer job in the company Credere.
+To see it running in production, click [here](https://credere-frontend-test.vercel.app/).
+
+The backend repository can be found [here](https://github.com/felipedeamonteiro/credere_backend_test).
 
 ## - Specifications and technologies used here
 
@@ -9,7 +12,7 @@ Here, `node` version is `12.16.3` and the package manager used is `yarn` in vers
 
 The database used is `Postgres` with `Typeorm` as ORM (object-relational mapping). Besides that, the database is running in a `docker` image of postgres.
 
-It's not used tests because the main point of this test is the backend application of this project. The backend repository can be found [here](https://github.com/felipedeamonteiro/credere_backend_test).
+It's not used tests because the main point of this test is the backend application of this project.
 
 ## - How to run the project
 
