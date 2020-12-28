@@ -45,7 +45,9 @@ const ControlPanel: React.FC = () => {
   );
 
   useEffect(() => {
-    if (window.innerWidth <= 415) {
+    if (window.innerWidth <= 375) {
+      setIconSize(25);
+    } else if (window.innerWidth <= 415) {
       setIconSize(30);
     } else {
       setIconSize(50);
@@ -181,7 +183,7 @@ const ControlPanel: React.FC = () => {
         <Button onClick={ResetCoordinates}>Resetar Coordenadas</Button>
         <Form ref={formRef} onSubmit={MoveProbe} id="move-probe">
           <Input
-            placeholder="Digite apenas os comandos GD, GE ou M"
+            placeholder="Digite os comandos GD, GE ou M"
             name="movement"
             value={inputMovement}
             onChange={e => setInputMovement(e.target.value)}

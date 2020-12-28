@@ -62,6 +62,9 @@ export const AnimationContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 150px;
+  h3 {
+    text-align: center;
+  }
 
   animation: ${appearFromLeft} 1s;
 
@@ -79,21 +82,17 @@ export const AnimationContainer = styled.div`
     margin-bottom: 30px;
   }
 
-  @media only screen and (max-width: 415px) {
-    button,
-    input {
-      width: 350px;
-    }
-  }
-
   @media only screen and (max-width: 375px) {
     button,
     input {
-      width: 300px;
+      width: 310px;
     }
+  }
 
-    h3 {
-      text-align: center;
+  @media only screen and (min-width: 380px) and (max-width: 415px) {
+    button,
+    input {
+      width: 350px;
     }
   }
 `;
@@ -111,7 +110,7 @@ export const Instructions = styled.div`
   height: 100%;
 
   div {
-    padding: 0 10px 0 10px;
+    padding: 0 40px;
 
     h1,
     h2 {

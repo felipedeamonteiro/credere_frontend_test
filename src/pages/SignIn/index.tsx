@@ -36,7 +36,7 @@ const SignIn: React.FC = () => {
         const schema = Yup.object().shape({
           signin: Yup.string()
             .matches(
-              /[A-Z][a-z].*\s[A-Z][a-z].*/,
+              /[A-Z]?[a-z].*\s[A-Z]?[a-z].*/,
               'É necessário um nome e sobrenome.',
             )
             .required('É necessário um nome e sobrenome. Exemplo: John Doe'),
@@ -68,8 +68,11 @@ const SignIn: React.FC = () => {
           <img src={LogoColorido} alt="Logo Credere" />
           <h3>Credere - Teste para Desenvolvedor Backend</h3>
           <Form ref={formRef} onSubmit={handleSubmit} id="signin-form">
-            <Input placeholder="Type a name to sign in" name="signin" />
-            <Button type="submit">Sign In</Button>
+            <Input
+              placeholder="Digite um nome e sobrenome para entrar"
+              name="signin"
+            />
+            <Button type="submit">Entrar</Button>
           </Form>
         </AnimationContainer>
       </Content>

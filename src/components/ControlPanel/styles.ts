@@ -56,7 +56,32 @@ export const Container = styled.div`
       }
     }
   }
-  @media only screen and (max-width: 415px) {
+
+  @media only screen and (max-width: 379px) {
+    max-width: 375px;
+    .panel-controller {
+      width: 300px;
+      margin-left: 20px;
+      input {
+        width: 290px;
+      }
+    }
+
+    .field-table {
+      table {
+        width: 80%;
+        margin: 0 0 40px 40px;
+        tr {
+          max-height: 21px;
+
+          td {
+            max-width: 9px;
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 380px) and (max-width: 415px) {
     .panel-controller {
       margin-left: 35px;
       width: 320px;

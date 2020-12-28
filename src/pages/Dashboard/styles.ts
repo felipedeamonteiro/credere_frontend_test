@@ -6,7 +6,11 @@ export const Container = styled.div`
   justify-content: space-between;
   height: 950px;
 
-  @media only screen and (max-width: 770px) {
+  @media only screen and (max-width: 375px) {
+    height: 1650px;
+  }
+
+  @media only screen and (min-width: 380px) and (max-width: 770px) {
     height: 1550px;
   }
 `;
@@ -17,6 +21,7 @@ export const InnerContainer = styled.div`
   align-items: center;
   margin-top: 17px;
   height: 780px;
+  padding: 0 50px;
 
   .dashboard-divs {
     margin-top: -77px;
@@ -46,7 +51,17 @@ export const InnerContainer = styled.div`
     }
   }
 
-  @media only screen and (max-width: 415px) {
+  @media only screen and (max-width: 379px) {
+    .dashboard-divs {
+      .instructions {
+        display: flex;
+        margin-bottom: 126px;
+        padding: 8px 8px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 380px) and (max-width: 415px) {
     .dashboard-divs {
       .instructions {
         display: flex;

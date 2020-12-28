@@ -68,8 +68,23 @@ export const Container = styled.header`
       border-radius: 50%;
     }
   }
+  @media only screen and (max-width: 375px) {
+    padding: 5px 10px !important;
 
-  @media only screen and (max-width: 415px) {
+    .left-div {
+      visibility: hidden;
+      width: 0;
+      padding: 0;
+    }
+
+    .right-div {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (min-width: 380px) and (max-width: 415px) {
     .left-div {
       visibility: hidden;
       width: 0;
@@ -87,6 +102,7 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 14px;
 
     h2 {
       padding-left: 0 !important;
