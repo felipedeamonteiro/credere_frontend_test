@@ -56,4 +56,42 @@ export const Container = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 415px) {
+    .panel-controller {
+      margin-left: 35px;
+      width: 320px;
+      height: 380px;
+
+      input {
+        width: 310px;
+      }
+    }
+
+    .field-table {
+      table {
+        width: 80%;
+        margin: 0 0 40px 40px;
+        tr {
+          max-height: 31px;
+
+          td {
+            max-width: 9px;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+
+    .panel-controller {
+      margin-bottom: 80px;
+    }
+
+    .field-table {
+      margin-left: 0;
+    }
+  }
 `;

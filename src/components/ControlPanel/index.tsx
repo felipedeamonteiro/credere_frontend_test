@@ -38,10 +38,20 @@ const ControlPanel: React.FC = () => {
   const [probeData, setProbeData] = useState<IMarsProbeCoordinatesData>(
     {} as IMarsProbeCoordinatesData,
   );
+  const [iconSize, setIconSize] = useState<number>(50);
   const [inputMovement, setInputMovement] = useState<string>('');
   const [arrowDirectionIcon, setArrowDirectionIcon] = useState<JSX.Element>(
-    <FiArrowRight size={50} color="#00c897" />,
+    <FiArrowRight size={iconSize} color="#00c897" />,
   );
+
+  useEffect(() => {
+    if (window.innerWidth <= 415) {
+      setIconSize(30);
+    } else {
+      setIconSize(50);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.innerWidth]);
 
   // Shows in the panel the probe coordinates
   useEffect(() => {
@@ -73,18 +83,18 @@ const ControlPanel: React.FC = () => {
   // Make sure about the arrow position of the probe direction
   useEffect(() => {
     if (probeData.carDirection === 'Direita') {
-      setArrowDirectionIcon(<FiArrowRight size={50} color="#00c897" />);
+      setArrowDirectionIcon(<FiArrowRight size={iconSize} color="#00c897" />);
     }
     if (probeData.carDirection === 'Cima') {
-      setArrowDirectionIcon(<FiArrowUp size={50} color="#00c897" />);
+      setArrowDirectionIcon(<FiArrowUp size={iconSize} color="#00c897" />);
     }
     if (probeData.carDirection === 'Esquerda') {
-      setArrowDirectionIcon(<FiArrowLeft size={50} color="#00c897" />);
+      setArrowDirectionIcon(<FiArrowLeft size={iconSize} color="#00c897" />);
     }
     if (probeData.carDirection === 'Baixo') {
-      setArrowDirectionIcon(<FiArrowDown size={50} color="#00c897" />);
+      setArrowDirectionIcon(<FiArrowDown size={iconSize} color="#00c897" />);
     }
-  }, [probeData.carDirection]);
+  }, [iconSize, probeData.carDirection]);
 
   // Reset probe coordinates calling its endpoint and updating the coordinates state
   const ResetCoordinates = useCallback(async () => {
@@ -186,7 +196,7 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -195,7 +205,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -204,7 +214,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -213,7 +223,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -222,7 +232,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -242,7 +252,7 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -251,7 +261,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -260,7 +270,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -269,7 +279,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -278,7 +288,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -298,7 +308,7 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -307,7 +317,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -316,7 +326,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -325,7 +335,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -334,7 +344,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -354,7 +364,7 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -363,7 +373,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -372,7 +382,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -381,7 +391,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -390,7 +400,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -410,7 +420,7 @@ const ControlPanel: React.FC = () => {
               <tr>
                 {probeData.xCoordinate === 0 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -419,7 +429,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 1 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -428,7 +438,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 2 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -437,7 +447,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 3 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
@@ -446,7 +456,7 @@ const ControlPanel: React.FC = () => {
 
                 {probeData.xCoordinate === 4 ? (
                   <td>
-                    <GiMarsPathfinder size={50} color="#116bd9" />
+                    <GiMarsPathfinder size={iconSize} color="#116bd9" />
                     {arrowDirectionIcon}
                   </td>
                 ) : (
