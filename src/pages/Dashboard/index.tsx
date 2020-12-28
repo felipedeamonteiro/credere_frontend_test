@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from './styles';
+import { Container, InnerContainer } from './styles';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -7,9 +7,9 @@ import ControlPanel from '../../components/ControlPanel';
 
 const Dashboard: React.FC = () => {
   return (
-    <>
+    <Container>
       <Header />
-      <Container>
+      <InnerContainer>
         <div className="dashboard-divs">
           <div className="instructions">
             <div className="inst-1">
@@ -58,9 +58,9 @@ const Dashboard: React.FC = () => {
 
           <ControlPanel />
         </div>
-      </Container>
+      </InnerContainer>
       <Footer />
-    </>
+    </Container>
   );
 };
 

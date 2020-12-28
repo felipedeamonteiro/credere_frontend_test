@@ -68,4 +68,43 @@ export const Container = styled.header`
       border-radius: 50%;
     }
   }
+
+  @media only screen and (max-width: 415px) {
+    .left-div {
+      visibility: hidden;
+      width: 0;
+      padding: 0;
+    }
+
+    .right-div {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  @media only screen and (max-width: 770px) {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      padding-left: 0 !important;
+      width: 350px;
+    }
+
+    .right-div {
+      display: flex;
+      justify-content: space-between;
+      .user-initials {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      button {
+        margin-left: 20px !important;
+      }
+    }
+  }
 `;
