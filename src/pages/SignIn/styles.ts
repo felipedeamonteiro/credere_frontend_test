@@ -6,6 +6,31 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
   overflow-y: none;
+
+  @media only screen and (min-width: 376px) and (max-width: 415px) {
+    max-width: 415px;
+    height: 1130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 375px) {
+    max-width: 380px;
+    height: 1180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media only screen and (min-width: 500px) and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Content = styled.div`
@@ -53,6 +78,24 @@ export const AnimationContainer = styled.div`
   h3 {
     margin-bottom: 30px;
   }
+
+  @media only screen and (max-width: 415px) {
+    button,
+    input {
+      width: 350px;
+    }
+  }
+
+  @media only screen and (max-width: 375px) {
+    button,
+    input {
+      width: 300px;
+    }
+
+    h3 {
+      text-align: center;
+    }
+  }
 `;
 
 export const Instructions = styled.div`
@@ -77,6 +120,19 @@ export const Instructions = styled.div`
 
     p {
       margin-left: 15px;
+    }
+  }
+
+  @media only screen and (max-width: 770px) {
+    width: 100%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 50px;
     }
   }
 `;
