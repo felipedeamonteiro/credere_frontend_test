@@ -4,14 +4,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 950px;
+  height: 1050px;
 
   @media only screen and (max-width: 375px) {
-    height: 1750px;
+    height: 1850px;
   }
 
   @media only screen and (min-width: 380px) and (max-width: 770px) {
-    height: 1650px;
+    height: 1750px;
   }
 `;
 
@@ -55,7 +55,7 @@ export const InnerContainer = styled.div`
     .dashboard-divs {
       .instructions {
         display: flex;
-        margin-bottom: 200px;
+        margin-bottom: 230px;
         padding: 8px 8px;
       }
     }
@@ -65,7 +65,7 @@ export const InnerContainer = styled.div`
     .dashboard-divs {
       .instructions {
         display: flex;
-        margin-bottom: 120px;
+        margin-bottom: 150px;
         padding: 0 8px;
       }
     }
