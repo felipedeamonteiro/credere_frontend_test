@@ -38,6 +38,7 @@ const ControlPanel: React.FC = () => {
   const [probeData, setProbeData] = useState<IMarsProbeCoordinatesData>(
     {} as IMarsProbeCoordinatesData,
   );
+  const [errorSet, setErrorSet] = useState<boolean>(false);
   const [iconSize, setIconSize] = useState<number>(50);
   const [inputMovement, setInputMovement] = useState<string>('');
   const [arrowDirectionIcon, setArrowDirectionIcon] = useState<JSX.Element>(
@@ -80,7 +81,7 @@ const ControlPanel: React.FC = () => {
     };
 
     giveProbeData();
-  }, [userName]);
+  }, [userName, errorSet]);
 
   // Make sure about the arrow position of the probe direction
   useEffect(() => {
@@ -147,6 +148,7 @@ const ControlPanel: React.FC = () => {
           });
         }
       } catch (error) {
+        setErrorSet(true);
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
 
@@ -157,6 +159,7 @@ const ControlPanel: React.FC = () => {
               'Um movimento inválido foi detectado, infelizmente a sonda ainda não possui a habilidade de #vvv',
           });
         }
+        setErrorSet(false);
       }
     },
     [userName],
