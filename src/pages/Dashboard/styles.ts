@@ -7,11 +7,11 @@ export const Container = styled.div`
   height: 950px;
 
   @media only screen and (max-width: 375px) {
-    height: 1650px;
+    height: 1750px;
   }
 
   @media only screen and (min-width: 380px) and (max-width: 770px) {
-    height: 1550px;
+    height: 1650px;
   }
 `;
 
@@ -29,7 +29,7 @@ export const InnerContainer = styled.div`
     .instructions {
       display: flex;
       flex-direction: row;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
 
       .inst-1 {
         strong {
@@ -55,7 +55,7 @@ export const InnerContainer = styled.div`
     .dashboard-divs {
       .instructions {
         display: flex;
-        margin-bottom: 126px;
+        margin-bottom: 200px;
         padding: 8px 8px;
       }
     }
@@ -65,7 +65,7 @@ export const InnerContainer = styled.div`
     .dashboard-divs {
       .instructions {
         display: flex;
-        margin-bottom: 65px;
+        margin-bottom: 120px;
         padding: 0 8px;
       }
     }

@@ -50,6 +50,10 @@ const Dashboard: React.FC = () => {
                     Separe os comandos por vírgulas e não adicione espaços.
                   </li>
                   <li>Só utilize letras maiúsculas.</li>
+                  <li style={{ color: '#ff0000' }}>
+                    Por enquanto só é possível mover a sonda. Estamos preparando
+                    novos objetivos, aguarde!
+                  </li>
                   <li>Divirta-se!!</li>
                 </ul>
               </h3>
